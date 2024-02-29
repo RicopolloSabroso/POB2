@@ -1,37 +1,32 @@
 package edu.udelp.poo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-public class TrianguloEquilatero extends AbstractTriangulo{
-	public TrianguloEquilatero(Double lado, Double altura) {
+public class TrianguloEscaleno extends AbstractTriangulo {
+	private Double base;
+	private Double lado3;
+	public TrianguloEscaleno(Double lado,Double base,Double lado3, Double altura) {
 		super(lado, altura);
+		this.base=base;
+		this.lado3=lado3;
 	}
-
 	@Override
 	public Double perimetro() {
 		// TODO Auto-generated method stub
-		return lado*3;
+		return lado+base+lado3;
 	}
-
 	@Override
 	public Double area() {
 		// TODO Auto-generated method stub
-		return (lado*altura)/2;
+		return (base*altura)/2;
 	}
-
 	@Override
 	public Integer numLados() {
 		// TODO Auto-generated method stub
 		return 3;
 	}
-
 	@Override
 	public String nombreFigura() {
 		// TODO Auto-generated method stub
-		return "Triangulo Equilatero";
+		return "Triangulo Escaleno";
 	}
 
 }

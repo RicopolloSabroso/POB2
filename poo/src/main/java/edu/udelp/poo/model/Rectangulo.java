@@ -1,22 +1,23 @@
 package edu.udelp.poo.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-public class Cuadrado extends AbstractFigura{
-	public Cuadrado(Double lado) {
-		super(lado);
+@Data
+public class Rectangulo extends AbstractFigura{
+	private Double altura;
+	public Rectangulo(Double base, Double altura) {
+		super(base);
+		this.altura=altura;
 	}
+
 	@Override
 	public Double perimetro() {
-		return lado*numLados();
+		return (lado*2)+(altura*2);
 	}
 
 	@Override
 	public Double area() {
-		return lado*lado;
+		return lado*altura;
 	}
 
 	@Override
@@ -26,6 +27,7 @@ public class Cuadrado extends AbstractFigura{
 
 	@Override
 	public String nombreFigura() {
-		return "Cuadrado";
+		return "Rectangulo";
 	}
+
 }
