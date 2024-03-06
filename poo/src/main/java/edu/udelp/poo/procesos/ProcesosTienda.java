@@ -41,7 +41,7 @@ public class ProcesosTienda {
 			throw new Exception("No alcanza el numero de prendas");
 		}
 		for (Prendas x : inventario) {
-			if(x.getCodigo()==codigo&& x.getCantidad()-cantidad>0) {
+			if(x.getCodigo()==codigo&& x.getCantidad()-cantidad>=0) {
 				return true;
 			}
 		}
@@ -51,11 +51,11 @@ public class ProcesosTienda {
 		inventario.add(prenda);
 	}
 	public boolean validarTalla(String talla) {
-        return talla == "CH" || talla == "M"|| talla == "G" || talla == "EX";
+        return talla.equalsIgnoreCase("CH")  || talla.equalsIgnoreCase("M")||talla.equalsIgnoreCase("G")|| talla.equalsIgnoreCase("EX");
     }
 	public boolean validarCodigo(String codigo) {
 		for (Prendas x : inventario) {
-			if(x.getCodigo()==Integer.parseInt(codigo)) {
+			if(x.getCodigo()==Integer.parseInt(codigo)&& x.getCantidad()>0) {
 				return true;
 			}
 		}

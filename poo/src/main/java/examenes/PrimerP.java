@@ -24,8 +24,8 @@ public class PrimerP {
 //		System.out.println(proceso.realizarVenta(p.getCodigo(), 5));
 //		proceso.tablaInventario();
 //		proceso.tablaVentas();
-		boolean ciclo=false;
-		 String nombre, opcion,genero, tamano, cantidad, precioCompra;
+		boolean ciclo=true;
+		 String nombre, opcion, opcion2,genero, tamano, cantidad, precioCompra;
 	        do {
 	            System.out.println("1. Dar de alta Prendas\n2.Ver inventario\n3. Vender Prendas\n4. Ver tabla Ventas\n5.Salir\nSeleccione una opción:");
 	            opcion = scanner.nextLine();
@@ -33,8 +33,8 @@ public class PrimerP {
 	                case 1:
 	                	do {
 	                		 System.out.println("1. pantalones de vestir\n2.pantalones de mezclilla\n3.camisas \n4.faldas\n5.blusas\n6.playeras  \nSeleccione una opción: ");
-	                          opcion = scanner.nextLine();
-	                          switch(Integer.parseInt(opcion)) {
+	                          opcion2 = scanner.nextLine();
+	                          switch(Integer.parseInt(opcion2)) {
 	                          	case 1:
 	                          		do {
                                 		System.out.println("Ingrese el genero(M/F) ");
@@ -53,7 +53,7 @@ public class PrimerP {
                                                         		System.out.println("Ingrese la cantidad ");
                                                         		cantidad =scanner.nextLine();
                                                         		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                        			proceso.precioVenta(new PantalonesVestir(genero=="M"?'M':'F',tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                        			proceso.precioVenta(new PantalonesVestir(genero.equalsIgnoreCase("M")?'M':'F',tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                         			ciclo=false;
                                                         		}else {
                                                         			System.out.println("El dato no puede ser negativo/0");
@@ -94,7 +94,7 @@ public class PrimerP {
                                                         		System.out.println("Ingrese la cantidad ");
                                                         		cantidad =scanner.nextLine();
                                                         		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                        			proceso.precioVenta(new PantalonesMezclilla(genero=="M"?'M':'F',tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                        			proceso.precioVenta(new PantalonesMezclilla(genero.equalsIgnoreCase("M")?'M':'F',tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                         			ciclo=false;
                                                         		}else {
                                                         			System.out.println("El dato no puede ser negativo/0");
@@ -135,7 +135,7 @@ public class PrimerP {
                                                         		System.out.println("Ingrese la cantidad ");
                                                         		cantidad =scanner.nextLine();
                                                         		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                        			proceso.precioVenta(new Camisas(genero=="M"?'M':'F',tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                        			proceso.precioVenta(new Camisas(genero.equalsIgnoreCase("M")?'M':'F',tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                         			ciclo=false;
                                                         		}else {
                                                         			System.out.println("El dato no puede ser negativo/0");
@@ -171,7 +171,7 @@ public class PrimerP {
                                                 		System.out.println("Ingrese la cantidad ");
                                                 		cantidad =scanner.nextLine();
                                                 		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                			proceso.precioVenta(new Faldas(tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                			proceso.precioVenta(new Faldas(tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                 			ciclo=false;
                                                 		}else {
                                                 			System.out.println("El dato no puede ser negativo/0");
@@ -202,7 +202,7 @@ public class PrimerP {
                                                 		System.out.println("Ingrese la cantidad ");
                                                 		cantidad =scanner.nextLine();
                                                 		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                			proceso.precioVenta(new Blusas(tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                			proceso.precioVenta(new Blusas(tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                 			ciclo=false;
                                                 		}else {
                                                 			System.out.println("El dato no puede ser negativo/0");
@@ -224,8 +224,7 @@ public class PrimerP {
 	                          		do {
                                 		System.out.println("Ingrese el genero(M/F) ");
                                 		genero =scanner.nextLine();
-                                		if(genero.equalsIgnoreCase("M")||genero.equalsIgnoreCase("F")) {
-                                			
+                                		if(genero.equalsIgnoreCase("M")||genero.equalsIgnoreCase("F")) { 			
                                 			do {
                                         		System.out.println("Ingrese la Talla(CH/M/G/EX) ");
                                         		tamano =scanner.nextLine();
@@ -238,7 +237,7 @@ public class PrimerP {
                                                         		System.out.println("Ingrese la cantidad ");
                                                         		cantidad =scanner.nextLine();
                                                         		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
-                                                        			proceso.precioVenta(new Playeras(genero=="M"?'M':'F',tamano,Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
+                                                        			proceso.precioVenta(new Playeras(genero.equalsIgnoreCase("M")?'M':'F',tamano.toUpperCase(),Double.parseDouble(precioCompra),Integer.parseInt(cantidad)));
                                                         			ciclo=false;
                                                         		}else {
                                                         			System.out.println("El dato no puede ser negativo/0");
@@ -274,14 +273,14 @@ public class PrimerP {
 	                	String f="";
 	                	double venta=0;
 	                	do {
-	                		if(proceso.estaVacioInventario()) {
+	                		if(!proceso.estaVacioInventario()) {
 		                		do {
 		                			proceso.tablaInventario();
 		                			System.out.println("Ingrese el codigo del que quiere comprar");
 		                			String codigo=scanner.nextLine();
-		                			if(proceso.validarMayorA0(Integer.parseInt(codigo))&& proceso.validarCodigo(codigo)) {
-	                        			do {
-	                                		System.out.println("Ingrese la cantidad ");
+		                			if(proceso.validarMayorA0(Integer.parseInt(codigo))) {
+		                				if(proceso.validarCodigo(codigo)) {
+		                					System.out.println("Ingrese la cantidad ");
 	                                		cantidad =scanner.nextLine();
 	                                		if(proceso.validarMayorA0(Double.parseDouble(cantidad))) {
 	                                			if(proceso.validarPrendasExistentes(Integer.parseInt(codigo), Integer.parseInt(cantidad))) {
@@ -303,9 +302,13 @@ public class PrimerP {
 	                                			System.out.println("El dato no puede ser negativo/0");
 	                                			ciclo=true;
 	                                		}
-	                                	}while(ciclo);
+		                				}else {
+		                						System.out.println("El costo total de las prendas es: "+venta+"\nNo hay prendas en almacen con ese codigo ");				
+                        					ciclo=false;
+                        					f="n";
+		                				}
 	                        		}else {
-	                        			System.out.println("El dato no puede ser negativo/0 o el codigo no existe");
+	                        			System.out.println("El dato no puede ser negativo/0");
 	                        			ciclo=true;
 	                        		}
 		                		}while(ciclo);
@@ -325,7 +328,7 @@ public class PrimerP {
 	                default:
 	                    System.out.println("Opción no válida.");
 	            }
-	        } while (Integer.parseInt(opcion)!=5);
+	        } while (Integer.parseInt(opcion)!=6);
 	    }
 
 	}
