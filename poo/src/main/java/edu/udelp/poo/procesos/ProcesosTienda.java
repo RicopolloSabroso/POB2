@@ -53,6 +53,14 @@ public class ProcesosTienda {
 	public boolean validarTalla(String talla) {
         return talla == "CH" || talla == "M"|| talla == "G" || talla == "EX";
     }
+	public boolean validarCodigo(String codigo) {
+		for (Prendas x : inventario) {
+			if(x.getCodigo()==Integer.parseInt(codigo)) {
+				return true;
+			}
+		}
+        return false;
+    }
 	public void tablaInventario() {
 		System.out.println("Tabla Inventario\nCodigo\t| Prenda\t| Tamaño\t| Genero\t| Cantidad\t| Precio Compra\t| Precio venta");
 		System.out.println(inventario);
